@@ -51,7 +51,7 @@ var dur, deg, scale;
 // Play a scale
 TempoClock.default.tempo = 1.0;
 scale = Scale.major;
-deg = Pseq(q.degrees);
+deg = Pseq(scale.degrees);
 dur = 0.25;
 x = Pbind(*[
     instrument: \sineWave,

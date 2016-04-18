@@ -1,3 +1,7 @@
+(
+s.boot;
+)
+
 // Arpeggios
 (
 TempoClock.default.tempo = 120/60;

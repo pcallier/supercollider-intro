@@ -1,3 +1,7 @@
+(
+s.boot;
+s.scope(2);
+)
 // Basic synth
 
 (
@@ -13,8 +17,6 @@ SynthDef(\triWave,
 ).add;
 )
 
-s.boot;
-s.scope;
 
 // Arpeggios
 (
@@ -54,6 +56,7 @@ var line=Pbind(
 line.play(quant: 1);
 )
 
+// fun with iteration
 (
 p = (Pn(1,5) ++ 0.7).asStream;
 10.do({p.next.postln;});
