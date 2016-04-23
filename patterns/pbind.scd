@@ -1,12 +1,20 @@
 (
+s.boot;
+s.scope(2);
+FreqScope.new;
+)
+
+
+(
 // a SynthDef
-SynthDef(\test, { | out, freq = 440, amp = 0.1, nharms = 10, pan = 0, gate = 1 |
+SynthDef.new(\test, { | out, freq = 440, amp = 0.1, nharms = 10, pan = 0, gate = 1 |
     var audio = Blip.ar(freq, nharms, amp);
     var env = Linen.kr(gate, doneAction: 2);
     OffsetOut.ar(out, Pan2.ar(audio, pan, env) );
 }).add;
+)
 
-
+(
 SynthDef.new(\harmonicSines,
 	{
 		| out, freq, amp, dur, slope = -1.0 |
@@ -34,9 +42,12 @@ SynthDef.new(\harmonicSines,
 
 
 )
-s.scope;
-FreqScope.new;
-Pbind(\instrument, \harmonicSines, \freq, Prand([1, 1.2, 2, 2.5, 3, 4], inf) * 200, \dur, 0.1).play;
+
+// Example
+(
+Pbind(\instrument, \test, \freq, Prand([1, 1.2, 2, 2.5, 3, 4], inf) * 200, \dur, 0.21).play
+)
+
 (
 a = Scale.major;
 // Pbind(\scale, a, \root, (-12 * 3) + 7, \degree, Pseq((0..7) ++ (6..0) ++ [\rest], 1),
