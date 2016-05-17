@@ -1,4 +1,8 @@
 (
+  s.boot;
+)
+
+(
   //s.options.maxNodes=256;
   s.reboot;
   "MaxNodes: ".post; s.options.maxNodes.postln;
@@ -6,6 +10,11 @@
 
 s.freeAll;
 SystemClock.sched(5, { "hello".postln });
+
+(
+s.scope(2);
+FreqScope(width: 200, height: 200);
+)
 
 (
 var timeNow = TempoClock.default.beats;
@@ -58,7 +67,7 @@ r = Routine({
     delta = rrand(1, 3) * 0.5;
     //s.sync;
     "delta ".post; delta.postln;
-    Synth(\singrain, [freq: exprand(200, 800), amp: rrand(0.1, 0.5), 
+    Synth(\singrain, [freq: exprand(200, 800), amp: rrand(0.1, 0.5),
       sustain: delta * 0.8]);
     delta.yield;
   }
@@ -69,3 +78,4 @@ r.play;
 r.stop;
 s.queryAllNodes
 s.reboot;
+s.quit;

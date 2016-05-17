@@ -34,7 +34,7 @@ p = Pbind(\scale, a,
     \degree, Pseq([0, 2, 4, 6], inf),
     \root, 4,
     \ctranspose, Pstutter(4, Pseq([0,2,5], inf)),
-    \instrument, \pulseWave);
+    \instrument, \basicSine);
 )
 
 // happy: var notes=Pseq([80, 78, 77, 80, 77, 73], 1);

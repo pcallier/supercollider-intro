@@ -1,12 +1,19 @@
 (
-  s.boot
+//  s=Server.internal; Server.default=Server.internal;
+//  s.postln;
+  s.boot;
+//  s.quit;
+//  s.startAliveThread;
+//  ServerBoot.add { s.initTree };
+//  s.quit;
+//  s.startAliveThread.postln;
 )
 
-
+( Server.internal.scope(2) )
 (
     var sine_synth = SynthDef.new(\basicSine,
     { | freq, amp=0.3, dur=1.0, peak=0.3 |
-     var env = EnvGen.kr(Env.new(levels: [0, amp, 0], 
+     var env = EnvGen.kr(Env.new(levels: [0, amp, 0],
        times: [dur*peak, dur-(dur*peak)],
        curve: \lin),
        doneAction: 2);
@@ -22,13 +29,15 @@
     Archive.global.postTree;
 )
 
+( ServerBoot.objects )
+
 (
     var sine_synth=Archive.global.at(\basicSine);
     sine_synth.add;
 )
 
 (
-    Synth.new(\basicSine, [freq: exprand(220, 660), 
+    Synth.new(\basicSine, [freq: exprand(220, 660),
        dur: 0.15, amp: 0.05, peak: 0.9]);
 )
 
@@ -37,7 +46,7 @@ var amp=1.0, dur=2.50, peak=0.5;
 a=Env.new(levels: [0, amp, 0],
           times: [dur*peak, dur-(dur*peak)],
           curve: \lin,);
-a.totalDuration;            
+a.totalDuration;
 )
 
 (
