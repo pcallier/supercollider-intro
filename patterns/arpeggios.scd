@@ -20,32 +20,34 @@ SynthDef(\pulseWave,
 
 // Arpeggios
 (
-TempoClock.default.tempo = 180/60;
+TempoClock.default.tempo = 240/60;
 t=TempoClock.default;
 )
 
 (
+var stream;
+(
 a=Scale.major;
 p = Pbind(\scale, a,
     \amp, 1.0,
-    \dur, Pseq([0.5, 0.5, 0.45, 0.45], inf),
+    \dur, Pseq([0.75, 0.75, 0.45, 0.45], inf),
 //  Randomization possibilities:
-//    \dur, Pxrand([0.5, 0.2, 0.3], inf),
-    \degree, Pseq([0, 2, 4, 6], inf),
+    //\dur, Pxrand([0.5, 0.2, 0.3], inf),
+    \degree, Pn(Pshuf([0, 2, 4, 6], 3)),
     \root, 4,
-    \ctranspose, Pstutter(4, Pseq([0,2,5], inf)),
-    \instrument, \basicSine);
-)
+    \ctranspose, Pstutter(4, Pseq([0,2,5], inf)));
+);
 
 // happy: var notes=Pseq([80, 78, 77, 80, 77, 73], 1);
 
 
 // Play pattern (using stream object)
 (
-var stream = p.play(quant: 1);
-stream.xstop(10);
+stream = p.play(quant: 0);
+stream.xstop(30);
 )
-
+)
 (
+
 s.quit
 )
