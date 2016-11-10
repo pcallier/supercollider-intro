@@ -14,3 +14,10 @@
                       amp_envelope;
             Out.ar([0,1], sig);
     }).add;
+
+(
+
+  {Synth(\bloop, [\amp, 0.9])}.play;
+
+  s.freeAll;
+)

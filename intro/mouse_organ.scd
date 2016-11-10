@@ -7,7 +7,7 @@ SynthDef.new(\hammondOrgan,
         arg out,
             pan=0,
             amp=1.0;
-        var sin_wavs, num_wavs=6, env, freq, slope;
+        var sin_wavs, num_wavs=12, env, freq, slope;
         freq = MouseX.kr(0, 1).exprange(80,500);
         slope = MouseY.kr(-1, 1);
         amp = sin(MouseX.kr(0,20*3.14)).range(0,1);
@@ -24,11 +24,10 @@ SynthDef.new(\hammondOrgan,
                 mul = amp * i.linlin(0.0, num_wavs, out_lo, out_hi);
                 //mul = mul.linexp(0,1,0.01,amp/(num_wavs));
                 wav_freq = freq + (i*freq);
-                SinOsc.ar(wav_freq) * mul;
+                Pan2.ar(SinOsc.ar(wav_freq) * mul, pan + Rand(-0.6, 0.6));
             }
         );
         sin_wavs = FreeVerb.ar(sin_wavs, 0.9, 0.6, 0.3);
-        sin_wavs = Pan2.ar(sin_wavs, pan);
         // limit level
         sin_wavs = Limiter.ar(sin_wavs, 1.0);
         Out.ar(out, sin_wavs);
