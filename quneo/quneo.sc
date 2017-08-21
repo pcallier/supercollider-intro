@@ -1,0 +1,1 @@
+/home/patrick/.local/share/SuperCollider/Extensions/quneo.sc
